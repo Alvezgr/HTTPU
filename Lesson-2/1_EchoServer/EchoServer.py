@@ -1,5 +1,4 @@
-#!/usr/bin/env python3
-#
+"""Echo sercer module"""
 # The *echo server* is an HTTP server that responds to a GET request by
 # sending the query path back to the client.  For instance, if you go to
 # the URI "http://localhost:8000/Balloon", the echo server will respond
@@ -19,8 +18,10 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
 
-class HelloHandler(BaseHTTPRequestHandler):
+class EchoHandler(BaseHTTPRequestHandler):
+    """Echollo handles class"""
     def do_GET(self):
+        """do_GET methon is GET verb"""
         # First, send a 200 OK response.
         self.send_response(200)
 
@@ -29,12 +30,10 @@ class HelloHandler(BaseHTTPRequestHandler):
         self.end_headers()
 
         # Now, write the response body.
-        
-
         self.wfile.write(f"Hello, the request path is {self.path}!\n".encode())
 
 
 if __name__ == '__main__':
-    server_address = ('', 8000)  # Serve on all addresses, port 8000.
-    httpd = HTTPServer(server_address, HelloHandler)
-    httpd.serve_forever()
+    SERVER_ADDRES = ('', 8000)  # Serve on all addresses, port 8000.
+    HTTPD = HTTPServer(SERVER_ADDRES, EchoHandler)
+    HTTPD.serve_forever()
